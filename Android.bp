@@ -1,0 +1,428 @@
+// Android.bp
+
+cc_defaults {
+    name: "lxc_defaults",
+    cflags: [
+        "-Wall",
+        "-std=gnu11",
+        "-fPIC",
+        "-O2",
+        "-Wno-error",
+        "-DIN_LIBLXC=1",
+    ],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+    shared_libs: [
+        "libc",
+        "libdl",
+        "libm",
+    ],
+    static_libs: [],
+}
+
+cc_library_shared {
+    name: "liblxc",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/cgroups/cgfsng.c",
+        "src/lxc/cgroups/cgroup.c",
+        "src/lxc/cgroups/cgroup2_devices.c",
+        "src/lxc/cgroups/cgroup_utils.c",
+        "src/lxc/lsm/lsm.c",
+        "src/lxc/lsm/nop.c",
+        "src/lxc/storage/btrfs.c",
+        "src/lxc/storage/dir.c",
+        "src/lxc/storage/loop.c",
+        "src/lxc/storage/lvm.c",
+        "src/lxc/storage/nbd.c",
+        "src/lxc/storage/overlay.c",
+        "src/lxc/storage/rbd.c",
+        "src/lxc/storage/rsync.c",
+        "src/lxc/storage/storage.c",
+        "src/lxc/storage/storage_utils.c",
+        "src/lxc/storage/zfs.c",
+        "src/lxc/af_unix.c",
+        "src/lxc/attach.c",
+        "src/lxc/caps.c",
+        "src/lxc/commands.c",
+        "src/lxc/commands_utils.c",
+        "src/lxc/conf.c",
+        "src/lxc/confile.c",
+        "src/lxc/confile_utils.c",
+        "src/lxc/criu.c",
+        "src/lxc/error.c",
+        "src/lxc/execute.c",
+        "src/lxc/file_utils.c",
+        "src/lxc/freezer.c",
+        "src/lxc/idmap_utils.c",
+        "src/lxc/initutils.c",
+        "src/lxc/log.c",
+        "src/lxc/lxccontainer.c",
+        "src/lxc/lxclock.c",
+        "src/lxc/mainloop.c",
+        "src/lxc/monitor.c",
+        "src/lxc/mount_utils.c",
+        "src/lxc/namespace.c",
+        "src/lxc/network.c",
+        "src/lxc/nl.c",
+        "src/lxc/parse.c",
+        "src/lxc/process_utils.c",
+        "src/lxc/rexec.c",
+        "src/lxc/ringbuf.c",
+        "src/lxc/rtnl.c",
+        "src/lxc/start.c",
+        "src/lxc/state.c",
+        "src/lxc/string_utils.c",
+        "src/lxc/sync.c",
+        "src/lxc/terminal.c",
+        "src/lxc/utils.c",
+        "src/lxc/uuid.c",
+        "src/include/lxcmntent.c",
+        "src/include/netns_ifaddrs.c",
+    ],
+    header_libs: [],
+    export_include_dirs: ["src/include"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src/lxc/storage",
+        "external/lxc/src",
+    ],
+
+}
+
+cc_binary {
+    name: "lxc_attach",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_attach.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+
+cc_binary {
+    name: "lxc_autostart",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_autostart.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_cgroup",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_cgroup.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_checkpoint",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_checkpoint.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_config",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_config.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_console",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_console.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_copy",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_copy.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src/lxc/storage",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_create",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_create.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src/lxc/storage",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_destroy",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_destroy.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_device",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_device.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_execute",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_execute.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_freeze",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_freeze.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_info",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_info.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_ls",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_ls.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_monitor",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_monitor.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_multicall",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_multicall.c",
+        "src/lxc/tools/arguments.c",
+        "src/lxc/tools/lxc_attach.c",
+        "src/lxc/tools/lxc_copy.c",
+        "src/lxc/tools/lxc_info.c",
+        "src/lxc/tools/lxc_create.c",
+        "src/lxc/tools/lxc_snapshot.c",
+        "src/lxc/tools/lxc_execute.c",
+        "src/lxc/tools/lxc_autostart.c",
+        "src/lxc/tools/lxc_start.c",
+        "src/lxc/tools/lxc_monitor.c",
+        "src/lxc/tools/lxc_unshare.c",
+        "src/lxc/tools/lxc_ls.c",
+        "src/lxc/tools/lxc_wait.c",
+        "src/lxc/tools/lxc_cgroup.c",
+        "src/lxc/tools/lxc_console.c",
+        "src/lxc/tools/lxc_config.c",
+        "src/lxc/tools/lxc_checkpoint.c",
+        "src/lxc/tools/lxc_top.c",
+        "src/lxc/tools/lxc_unfreeze.c",
+        "src/lxc/tools/lxc_destroy.c",
+        "src/lxc/tools/lxc_stop.c",
+        "src/lxc/tools/lxc_device.c",
+        "src/lxc/tools/lxc_freeze.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src/lxc/storage",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_snapshot",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_snapshot.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_start",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_start.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_stop",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_stop.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_top",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_top.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_unfreeze",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_unfreeze.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
+cc_binary {
+    name: "lxc_unshare",
+    defaults: ["lxc_defaults"],
+    srcs: [
+        "src/lxc/tools/lxc_unshare.c",
+        "src/lxc/tools/arguments.c",
+    ],
+    shared_libs: ["liblxc"],
+    include_dirs: [
+        "external/lxc/src/lxc",
+        "external/lxc/src",
+    ],
+}
+
