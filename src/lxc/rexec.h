@@ -7,6 +7,6 @@
 
 #include "compiler.h"
 
-__hidden extern int lxc_rexec(const char *memfd_name);
+__attribute__((visibility("default"))) extern int lxc_rexec(const char *memfd_name);
 
 #endif /* __LXC_REXEC_H */

@@ -34,7 +34,7 @@ __hidden extern const struct ns_info {
 
 __hidden extern int lxc_namespace_2_cloneflag(const char *namespace);
 __hidden extern int lxc_namespace_2_ns_idx(const char *namespace);
-__hidden extern int lxc_namespace_2_std_identifiers(char *namespaces);
-__hidden extern int lxc_fill_namespace_flags(char *flaglist, int *flags);
+extern int lxc_namespace_2_std_identifiers(char *namespaces);
+extern int lxc_fill_namespace_flags(char *flaglist, int *flags);
 
 #endif /* __LXC_NAMESPACE_H */

@@ -42,26 +42,26 @@ typedef int (*lxc_mainloop_callback_t)(int fd, uint32_t event, void *data,
 
 typedef int (*lxc_mainloop_cleanup_t)(int fd, void *data);
 
-__hidden extern int lxc_mainloop(struct lxc_async_descr *descr, int timeout_ms);
+extern int lxc_mainloop(struct lxc_async_descr *descr, int timeout_ms);
 
-__hidden extern int lxc_mainloop_add_handler_events(struct lxc_async_descr *descr, int fd, int events,
+extern int lxc_mainloop_add_handler_events(struct lxc_async_descr *descr, int fd, int events,
 						    lxc_mainloop_callback_t callback,
 						    lxc_mainloop_cleanup_t cleanup,
 						    void *data, const char *name);
-__hidden extern int lxc_mainloop_add_handler(struct lxc_async_descr *descr, int fd,
+extern int lxc_mainloop_add_handler(struct lxc_async_descr *descr, int fd,
 					     lxc_mainloop_callback_t callback,
 					     lxc_mainloop_cleanup_t cleanup,
 					     void *data, const char *name);
-__hidden extern int lxc_mainloop_add_oneshot_handler(struct lxc_async_descr *descr, int fd,
+extern int lxc_mainloop_add_oneshot_handler(struct lxc_async_descr *descr, int fd,
 						     lxc_mainloop_callback_t callback,
 						     lxc_mainloop_cleanup_t cleanup,
 						     void *data, const char *name);
 
-__hidden extern int lxc_mainloop_del_handler(struct lxc_async_descr *descr, int fd);
+extern int lxc_mainloop_del_handler(struct lxc_async_descr *descr, int fd);
 
-__hidden extern int lxc_mainloop_open(struct lxc_async_descr *descr);
+extern int lxc_mainloop_open(struct lxc_async_descr *descr);
 
-__hidden extern void lxc_mainloop_close(struct lxc_async_descr *descr);
+extern void lxc_mainloop_close(struct lxc_async_descr *descr);
 
 define_cleanup_function(struct lxc_async_descr *, lxc_mainloop_close);
 

@@ -215,7 +215,7 @@ int clone(int (*fn)(void *), void *child_stack, int flags, void *arg, ...
  * - should call lxc_raw_getpid():
  *   The child should use lxc_raw_getpid() to retrieve its pid.
  */
-__hidden extern pid_t lxc_clone(int (*fn)(void *), void *arg, int flags, int *pidfd);
+extern pid_t lxc_clone(int (*fn)(void *), void *arg, int flags, int *pidfd);
 
 
 /*
@@ -245,8 +245,8 @@ __hidden extern pid_t lxc_clone(int (*fn)(void *), void *arg, int flags, int *pi
  * - must call lxc_raw_getpid():
  *   The child must use lxc_raw_getpid() to retrieve its pid.
  */
-__hidden extern pid_t lxc_raw_clone(unsigned long flags, int *pidfd);
-__hidden extern pid_t lxc_raw_legacy_clone(unsigned long flags, int *pidfd);
+extern pid_t lxc_raw_clone(unsigned long flags, int *pidfd);
+extern pid_t lxc_raw_legacy_clone(unsigned long flags, int *pidfd);
 
 /*
  * lxc_raw_clone_cb() - create a new process
@@ -259,7 +259,7 @@ __hidden extern pid_t lxc_raw_legacy_clone(unsigned long flags, int *pidfd);
  * All other comments that apply to lxc_raw_clone() apply to lxc_raw_clone_cb()
  * as well.
  */
-__hidden extern pid_t lxc_raw_clone_cb(int (*fn)(void *), void *args, unsigned long flags,
+extern pid_t lxc_raw_clone_cb(int (*fn)(void *), void *args, unsigned long flags,
 				       int *pidfd);
 
 #if !HAVE_EXECVEAT
@@ -291,7 +291,7 @@ static inline pid_t lxc_raw_gettid(void)
 #endif
 }
 
-__hidden extern int lxc_raw_pidfd_send_signal(int pidfd, int sig, siginfo_t *info,
+extern int lxc_raw_pidfd_send_signal(int pidfd, int sig, siginfo_t *info,
 					      unsigned int flags);
 
 static inline const char *signal_name(int sig)
