@@ -246,38 +246,12 @@ int lxc_mkdir_p(const char *dir, mode_t mode)
 
 char *get_rundir(void)
 {
-	__do_free char *rundir = NULL;
-	char *static_rundir;
-	int ret;
-	size_t len;
-	const char *homedir;
-	struct stat sb;
+	const char *static_rundir = "/data/lindroid/lxc/run";
 
-	if (stat(RUNTIME_PATH, &sb) < 0)
-		return NULL;
+	// Duplicate the string to allocate memory for it and return
+	char *rundir = strdup(static_rundir);
 
-	if (geteuid() == sb.st_uid || getegid() == sb.st_gid)
-		return strdup(RUNTIME_PATH);
-
-	static_rundir = getenv("XDG_RUNTIME_DIR");
-	if (static_rundir)
-		return strdup(static_rundir);
-
-	INFO("XDG_RUNTIME_DIR isn't set in the environment");
-	homedir = getenv("HOME");
-	if (!homedir)
-		return log_error(NULL, "HOME isn't set in the environment");
-
-	len = strlen(homedir) + 17;
-	rundir = malloc(sizeof(char) * len);
-	if (!rundir)
-		return NULL;
-
-	ret = strnprintf(rundir, len, "%s/.cache/lxc/run/", homedir);
-	if (ret < 0)
-		return ret_set_errno(NULL, EIO);
-
-	return move_ptr(rundir);
+    return rundir;
 }
 
 int wait_for_pid(pid_t pid)
