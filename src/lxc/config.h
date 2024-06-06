@@ -189,19 +189,19 @@
 
 #define LXCINITDIR "/system/libexec"
 
-#define LXCPATH "/data/lindroid/lxc"
+#define LXCPATH "/data/lindroid/lxc/container"
 
 #define LXCROOTFSMOUNT "/data/lindroid/lxc/rootfs"
 
-#define LXCTEMPLATECONFIG "/data/lindroid/lxc/config"
+#define LXCTEMPLATECONFIG "/system_ext/usr/share/lindroid/lxc/config"
 
-#define LXCTEMPLATEDIR "/data/linfroid/lxc/templates"
+#define LXCTEMPLATEDIR "/system_ext/bin/lindroid-lxc-templates"
 
-#define LXC_DEFAULT_CONFIG "/system/lindroid/lxc/default.conf"
+#define LXC_DEFAULT_CONFIG "/system_ext/usr/share/lindroid/lxc/default.conf"
 
-#define LXC_GLOBAL_CONF "/system/lindroid/lxc/lxc.conf"
+#define LXC_GLOBAL_CONF "/system_ext/usr/share/lindroid/lxc/lxc.conf"
 
-#define LXC_USERNIC_CONF "/system/lindroid/lxc/lxc-usernet"
+#define LXC_USERNIC_CONF "/system_ext/usr/share/lindroid/lxc/lxc-usernet"
 
 #define LXC_USERNIC_DB "/data/lindroid/lxc/nics"
 
