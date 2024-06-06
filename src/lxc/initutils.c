@@ -609,18 +609,7 @@ __noreturn int lxc_container_init(int argc, char *const *argv, bool quiet)
 		exit(EXIT_FAILURE);
 	}
 
-	ret = close_range(STDERR_FILENO + 1, UINT_MAX, CLOSE_RANGE_UNSHARE);
-	if (ret) {
-		/*
-		 * Fallback to close_inherited() when the syscall is not
-		 * available or when CLOSE_RANGE_UNSHARE isn't supported.
-		 * On a regular kernel CLOSE_RANGE_UNSHARE should always be
-		 * available but openSUSE Leap 15.3 seems to have a partial
-		 * backport without CLOSE_RANGE_UNSHARE support.
-		 */
-		if (errno == ENOSYS || errno == EINVAL)
-			ret = close_inherited();
-	}
+	ret = close_inherited();
 	if (ret) {
 		fprintf(stderr, "Aborting attach to prevent leaking file descriptors into container\n");
 		exit(EXIT_FAILURE);

@@ -13,6 +13,7 @@ cc_defaults {
     include_dirs: [
         "external/lxc/src/lxc",
         "external/lxc/src",
+        "external/lxc/src/lxc/cgroups",
     ],
     shared_libs: [
         "libc",
