@@ -776,9 +776,9 @@ static int drop_capabilities(struct attach_context *ctx)
 	int ret;
 	__u32 last_cap;
 
-	ret = lxc_caps_last_cap(&last_cap);
-	if (ret)
-		return syserror_ret(ret, "%d - Failed to drop capabilities", ret);
+//	ret = lxc_caps_last_cap(&last_cap);
+//	if (ret)
+//		return syserror_ret(ret, "%d - Failed to drop capabilities", ret);
 
 	for (__u32 cap = 0; cap <= last_cap; cap++) {
 		if (ctx->capability_mask & (1LL << cap))
